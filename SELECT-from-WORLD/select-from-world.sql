@@ -46,7 +46,7 @@ OR population > 250000000
 
 SELECT name, population, area
 FROM world
-WHERE population > 250000000
+WHERE population > 250000000 
 XOR area > 3000000
 
 
