@@ -4,3 +4,10 @@ Modify it to show the matchid and player name for all goals scored by Germany. T
 SELECT matchid, player
 FROM goal
 WHERE teamid = 'GER'
+
+/*Notice in the that the column matchid in the goal table corresponds to the id column in the game table. We can look up information about game 1012 by finding that row in the game table.
+Show id, stadium, team1, team2 for just game 1012*/
+
+SELECT id, stadium, team1, team2 
+FROM game
+WHERE id=1012
