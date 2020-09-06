@@ -51,3 +51,58 @@ FROM game
 JOIN eteam
 ON (team1=eteam.id)
 WHERE coach='Fernando Santos'
+
+/*List the player for every goal scored in a game where the stadium was 'National Stadium, Warsaw'*/
+
+SELECT player
+FROM goal
+JOIN game
+ON id=matchid
+WHERE stadium='National Stadium, Warsaw'
+
+/*The example query shows all goals scored in the Germany-Greece quarterfinal. Instead show the name of all players who scored a goal against Germany.
+
+Select goals scored only by non-German players in matches where GER was the id of either team1 or team2.
+You can use teamid!='GER' to prevent listing German players. You can use DISTINCT to stop players being listed twice.*/
+
+SELECT DISTINCT (player)
+FROM goal 
+JOIN game 
+ON id=matchid 
+WHERE (team1=teamid AND team2='GER')
+OR (team2=teamid AND team1='GER')
+
+/*Show teamname and the total number of goals scored. COUNT and GROUP BY You should COUNT(*) in the SELECT line and GROUP BY teamname*/
+
+SELECT teamname, COUNT(*)
+FROM goal x 
+JOIN eteam y 
+ON x.teamid = y.id
+GROUP BY teamname
+
+/*Show the stadium and the number of goals scored in each stadium.*/
+
+SELECT stadium, COUNT(*)
+FROM game
+JOIN goal
+ON id=matchid 
+GROUP BY stadium
+
+/*For every match involving 'POL', show the matchid, date and the number of goals scored.*/
+
+SELECT matchid, mdate, COUNT(*)
+FROM game
+JOIN goal
+ON id=matchid
+WHERE team1= 'POL'
+OR team2 = 'POL'
+GROUP BY matchid, mdate
+
+/*For every match where 'GER' scored, show matchid, match date and the number of goals scored by 'GER'*/
+
+SELECT matchid, mdate, COUNT(*)
+FROM goal
+JOIN game
+ON id=matchid
+WHERE teamid= 'GER'
+GROUP BY matchid, mdate
