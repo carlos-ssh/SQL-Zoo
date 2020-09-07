@@ -44,10 +44,8 @@ You can filter the data to view only Monday's figures WHERE WEEKDAY(whn) = 0.
 Show the number of new cases in Italy for each week - show Monday only.*/
 
 SELECT tw.name, DATE_FORMAT(tw.whn, '%Y-%m-%d'), tw.confirmed - lw.confirmed
-FROM covid tw LEFT JOIN covid lw ON DATE_ADD(lw.whn, INTERVAL
-1 WEEK) = tw.whn AND tw.name = lw.name
-WHERE tw.name = 'Italy' AND weekday
-(tw.whn) = 0;
+FROM covid tw LEFT JOIN covid lw ON DATE_ADD(lw.whn, INTERVAL1 WEEK) = tw.whn AND tw.name = lw.name
+WHERE tw.name = 'Italy' AND weekday(tw.whn) = 0;
 
 /*You can JOIN a table using DATE arithmetic. This will give different results if data is missing.
 Show the number of new cases in Italy for each week - show Monday only.
