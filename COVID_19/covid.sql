@@ -70,4 +70,7 @@ ORDER BY population DESC
 /*The query shown includes a JOIN t the world table so we can access the total population of each country and calculate infection rates (in cases per 100,000).
 Show the infect rate ranking for each country. Only include countries with a population of at least 10 million.*/
 
-pendiente....
+SELECT world.name, ROUND(10000*confirmed/population,0), RANK() OVER (ORDER BY confirmed/population ) rank
+FROM covid JOIN world ON covid.name=world.name
+WHERE whn = '2020-04-20' AND population > 10000000
+ORDER BY population DESC
