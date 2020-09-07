@@ -23,5 +23,38 @@ SELECT id
 FROM actor
 WHERE name='Glenn Close'
 
+/*What is the id of the film 'Casablanca'*/
 
-/**/
+SELECT id
+FROM movie
+WHERE title='Casablanca'
+
+/*Obtain the cast list for 'Casablanca'.
+what is a cast list? The cast list is the names of the actors who were in the movie. Use movieid=11768, (or whatever value you got from the previous question)*/
+
+SELECT name
+FROM actor x
+JOIN casting y
+ON x.id = y.actorid
+WHERE movieid=11768
+
+/*Obtain the cast list for the film 'Alien'*/
+
+SELECT name
+FROM actor x
+JOIN casting y
+ON x.id = actorid
+JOIN movie z
+ON z.id = movieid
+WHERE title= 'Alien'
+
+
+/*List the films in which 'Harrison Ford' has appeared*/
+
+SELECT title
+FROM movie x
+JOIN casting y
+ON x.id = movieid
+JOIN actor z
+ON z.id = actorid
+WHERE name='Harrison Ford'
